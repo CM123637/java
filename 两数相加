@@ -1,0 +1,69 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode newhead=new ListNode(-1);
+        ListNode newtail=newhead;
+        int ret=0;
+        int tem=0;
+        int sum=0;
+        ListNode cur1=l1;
+        ListNode cur2=l2;
+        while(cur1!=null&&cur2!=null){
+            sum=cur1.val+cur2.val+ret;
+            if(sum>9){
+                tem=sum-10;
+                ret=sum/10;
+                newtail.next=new ListNode(tem);
+            }
+            else{
+                newtail.next=new ListNode(sum);
+                ret=0;
+            }
+            cur1=cur1.next;
+            cur2=cur2.next;
+            newtail=newtail.next;
+        }
+        
+             while(cur1!=null){
+           sum=cur1.val+ret;
+            if(sum>9){
+                tem=sum-10;
+                ret=sum/10;
+                newtail.next=new ListNode(tem);
+            }
+            else{
+                newtail.next=new ListNode(sum);
+                ret=0;
+            }
+           cur1=cur1.next;
+           newtail=newtail.next;
+            }
+            while(cur2!=null){
+           sum=cur2.val+ret;
+            if(sum>9){
+                tem=sum-10;
+                ret=sum/10;
+                newtail.next=new ListNode(tem);
+            }
+            else{
+                newtail.next=new ListNode(sum);
+                ret=0;
+            }
+           cur2=cur2.next;
+           newtail=newtail.next;
+            }
+             if(cur1==null&&cur2==null&&ret!=0){
+            newtail.next=new ListNode(ret);
+            newtail=newtail.next;
+        }
+          
+        return newhead.next;
+    }
+}
