@@ -1,0 +1,25 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+     int longest=0;
+        int start=0;
+        int end=0;
+        int len=s.length();
+        int repeatIndex;
+        String str;
+        for(;end<len;end++){
+            str=s.substring(start,end);
+            repeatIndex=str.indexOf(s.charAt(end));
+            if(repeatIndex>-1){
+                if(longest<end-start){
+                    longest=end-start;
+                }
+                start=start+repeatIndex+1;
+                
+            }
+        }
+        if(longest<end-start){
+            longest=end-start;
+        }
+        return longest;
+    }
+}
